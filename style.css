@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    width: auto;
+    max-width: 800px;
     margin: 40px auto;
     padding: 30px;
     background-color: #3c404d; 
@@ -26,37 +26,50 @@ h1 {
     color: #adbac7;
 }
 
+.level-selection {
+    margin-bottom: 20px;
+}
+
+.level-selection label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+#level {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #4caf50;
+    background-color: #3c404d;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#level:hover {
+    background-color: #4caf50;
+    transform: scale(1.05);
+}
+
 #game-board {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
     justify-content: center;
     padding: 20px;
 }
 
-.card {
-    width: 211.8px;
-    height: 166.2px;
-    background-color: #565c6f;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.card img {
+#game-board img {
     width: 100%;
     height: auto;
-    visibility: hidden; /* Hide images by default */
-    display: block;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
 }
 
-.card.show img {
-    visibility: visible; /* Show image when card is flipped */
+#game-board img:hover {
+    transform: scale(1.05);
 }
 
 #start-game {
@@ -73,4 +86,20 @@ h1 {
 #start-game:hover {
     background-color: #43a047; /* Darker on hover */
     transform: scale(1.05); /* Slightly enlarges on hover */
+}
+
+@media (max-width: 600px) {
+    .instructions {
+        font-size: 16px;
+    }
+    
+    #start-game {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    #level {
+        font-size: 14px;
+        padding: 8px;
+    }
 }

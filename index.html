@@ -10,8 +10,16 @@
     <div class="container">
         <h1>MEME MATCHING GAME</h1>
         <p class="instructions">
-            Welcome to the Meme Matching Game!  Flip over two cards at a time and try to find all the matching pairs. Be quick and remember where you saw the cards!
+            Welcome to the Meme Matching Game! Flip over two cards at a time and try to find all the matching pairs. Be quick and remember where you saw the cards!
         </p>
+        <div class="level-selection">
+            <label for="level">Select Difficulty:</label>
+            <select id="level">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
         <button id="start-game">Start Game</button>
         <div id="game-board" class="game-board">
             <!-- Cards will be generated here -->

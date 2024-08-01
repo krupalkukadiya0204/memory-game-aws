@@ -1,29 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('#game-board');
     const startButton = document.getElementById('start-game');
+    const levelSelect = document.getElementById('level');
     let cardsChosen = [];
     let cardsChosenId = [];
     let cardsWon = [];
-
-    const cardArray = [
-        { name: 'card1', img: 'images/distracted.png' },
-        { name: 'card1', img: 'images/distracted.png' },
-        { name: 'card2', img: 'images/drake.png' },
-        { name: 'card2', img: 'images/drake.png' },
-        { name: 'card3', img: 'images/fine.png' },
-        { name: 'card3', img: 'images/fine.png' },
-        { name: 'card4', img: 'images/rollsafe.png' },
-        { name: 'card4', img: 'images/rollsafe.png' },
-        { name: 'card5', img: 'images/success.png' },
-        { name: 'card5', img: 'images/success.png' },
-        // ...add more pairs as needed
+    
+    const cardImages = [
+        { name: 'distracted', img: 'images/distracted.png' },
+        { name: 'drake', img: 'images/drake.png' },
+        { name: 'fine', img: 'images/fine.png' },
+        { name: 'rollsafe', img: 'images/rollsafe.png' },
+        { name: 'success', img: 'images/success.png' },
+        { name: 'yelling-cat', img: 'images/yelling-cat.png' },
+        { name: 'one-does-not-simply', img: 'images/one-does-not-simply.png' },
+        { name: 'futurama-fry', img: 'images/futurama-fry.png' },
+        { name: 'disaster-girl', img: 'images/disaster-girl.png' },
+        { name: 'philosoraptor', img: 'images/philosoraptor.png' },
+        // Add more card images as needed
     ];
+
+    let cardArray = [];
 
     function shuffle(array) {
         array.sort(() => 0.5 - Math.random());
     }
 
     function createBoard() {
+        const level = levelSelect.value;
+        setupCards(level);
         shuffle(cardArray);
         grid.innerHTML = '';
         cardsWon = [];
@@ -35,6 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
             card.addEventListener('click', flipCard);
             grid.appendChild(card);
         }
+    }
+
+    function setupCards(level) {
+        cardArray = [];
+        let pairs = 0;
+        if (level === 'easy') {
+            pairs = 4; // Increase the number of pairs for easy level
+        } else if (level === 'medium') {
+            pairs = 8; // Increase the number of pairs for medium level
+        } else if (level === 'hard') {
+            pairs = 12; // Increase the number of pairs for hard level
+        }
+        const selectedImages = cardImages.slice(0, pairs);
+        cardArray = selectedImages.concat(selectedImages); // Duplicate images to create pairs
     }
 
     function flipCard() {
